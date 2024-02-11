@@ -1,0 +1,19 @@
+name: Code Guard
+
+# Run the job on every push and pull request event
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository code
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      # Perform static code analysis using ShellCheck for .sh files
+      - name: Shell Syntax Checking with ShellCheck
+        run: shellcheck **/*.sh || true
